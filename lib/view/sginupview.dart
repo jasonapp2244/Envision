@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider_tamplete/res/components/app_color.dart';
 import 'package:provider_tamplete/res/components/auth_button.dart';
+import 'package:provider_tamplete/utils/routes/routes_name.dart';
 import 'package:provider_tamplete/utils/routes/utils.dart';
 import 'package:provider_tamplete/view/home_view.dart';
 import 'package:provider_tamplete/view/loginview.dart';
@@ -113,7 +114,7 @@ class _SginupviewState extends State<Sginupview> {
                     prefixIcon: Padding(
                       padding: EdgeInsets.all(Responsive.w(4)), // 2% of width
                       child: SvgPicture.asset(
-                        "assets/icons/user-multiple-02.svg",
+                        "assets/icons/user.svg",
                       ),
                     ),
                     filled: true,
@@ -205,7 +206,7 @@ class _SginupviewState extends State<Sginupview> {
                     ),
                     prefixIcon: Padding(
                       padding: EdgeInsets.all(Responsive.w(4)), // 2% of width
-                      child: SvgPicture.asset("assets/icons/call.svg"),
+                      child: SvgPicture.asset("assets/icons/iconsax-call.svg"),
                     ),
                     filled: true,
 
@@ -263,7 +264,7 @@ class _SginupviewState extends State<Sginupview> {
                         prefixIcon: Padding(
                           padding: EdgeInsets.all(Responsive.w(4)),
                           child: SvgPicture.asset(
-                            "assets/icons/lock-password (3).svg",
+                            "assets/icons/square-lock-password.svg",
                           ),
                         ),
                         suffixIcon: GestureDetector(
@@ -302,7 +303,7 @@ class _SginupviewState extends State<Sginupview> {
                           TextSpan(
                             text: ' Terms & Privacy',
                             style: GoogleFonts.dmSans(
-                              color:AppColor.textColor,
+                              color: AppColor.textColor,
                               fontSize: Responsive.textScaleFactor * 14,
                               fontWeight: FontWeight.w700,
                               letterSpacing: -0.20,
@@ -326,10 +327,7 @@ class _SginupviewState extends State<Sginupview> {
                     } else if (passwordController.text.length < 8) {
                       Utils.tosatMassage("Please Enter 8 digits");
                     } else {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (_) => HomeView()),
-                      );
+                      Navigator.pushReplacementNamed(context, RoutesName.contentPreferenceScreen);
                       // Navigate to
 
                       // Map<String, String> headr = {
@@ -403,11 +401,9 @@ class _SginupviewState extends State<Sginupview> {
                                 //   context,
                                 //   RoutesName.loginview,
                                 // );
-                                Navigator.pushReplacement(
+                                Navigator.pushReplacementNamed(
                                   context,
-                                  MaterialPageRoute(
-                                    builder: (_) => Loginview(),
-                                  ),
+                                  RoutesName.login,
                                 );
                               },
                           ),
@@ -430,7 +426,7 @@ class _SginupviewState extends State<Sginupview> {
       width: Responsive.w(25), // 20% of screen width
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(Responsive.w(5.5)),
-        color: AppColor.darkgreen,
+        color: AppColor.green,
       ),
       child: Padding(
         padding: EdgeInsets.all(Responsive.w(3)),

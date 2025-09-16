@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider_tamplete/res/components/app_color.dart';
 import 'package:provider_tamplete/res/components/auth_button.dart';
+import 'package:provider_tamplete/utils/routes/routes_name.dart';
 import 'package:provider_tamplete/utils/routes/utils.dart';
 import 'package:provider_tamplete/view/home_view.dart';
 import 'package:provider_tamplete/view/sginupview.dart';
@@ -166,7 +167,7 @@ class _LoginviewState extends State<Loginview> {
                         prefixIcon: Padding(
                           padding: EdgeInsets.all(Responsive.w(4)),
                           child: SvgPicture.asset(
-                            "assets/icons/lock-password (3).svg",
+                            "assets/icons/square-lock-password.svg",
                           ),
                         ),
                         suffixIcon: GestureDetector(
@@ -177,7 +178,7 @@ class _LoginviewState extends State<Loginview> {
                             _obsecurePassword.value
                                 ? Icons.visibility_off
                                 : Icons.visibility,
-                            color: AppColor.white,
+                            color: AppColor.textColor,
                             size: Responsive.sp(20),
                           ),
                         ),
@@ -212,19 +213,22 @@ class _LoginviewState extends State<Loginview> {
                   //  authViewmodel.loading,
                   onPress: () {
                     if (emailController.text.isEmpty) {
-                      Utils.tosatMassage("Please Enter Email First");
+                      Utils.flushBarErrorMassage(
+                        "Please Enter Email First",
+                        context,
+                      );
                     } else if (passwordController.text.isEmpty) {
-                      Utils.tosatMassage("Please Enter Password First");
+                      Utils.flushBarErrorMassage(
+                        "Please Enter Password First",
+                        context,
+                      );
                     } else if (passwordController.text.length < 8) {
-                      Utils.tosatMassage(
+                      Utils.flushBarErrorMassage(
                         "Please Enter 8 digits",
-                        // context,
+                        context,
                       );
                     } else {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (_) => HomeView()),
-                      );
+                      Navigator.pushReplacementNamed(context, RoutesName.mainScreenHolder);
                       // Navigator.pushReplacementNamed(context, RoutesName.role);
                       // Map<String, String> headr = {
                       //   "x-api-key": "reqres-free-v1",
@@ -293,11 +297,9 @@ class _LoginviewState extends State<Loginview> {
                             ),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                                Navigator.pushReplacement(
+                                Navigator.pushReplacementNamed(
                                   context,
-                                  MaterialPageRoute(
-                                    builder: (_) => Sginupview(),
-                                  ),
+                                  RoutesName.signup,
                                 );
                                 // Navigator.pushReplacementNamed(
                                 //   context,
@@ -324,7 +326,7 @@ class _LoginviewState extends State<Loginview> {
       width: Responsive.w(25), // 20% of screen width
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(Responsive.w(5.5)),
-        color: AppColor.darkgreen,
+        color: AppColor.green,
       ),
       child: Padding(
         padding: EdgeInsets.all(Responsive.w(3)),
@@ -361,7 +363,7 @@ void _showForgotPasswordBottomSheet(
             Text(
               "Forgot Password?",
               style: GoogleFonts.dmSans(
-                color: AppColor.white,
+                color: AppColor.textColor,
                 fontSize: Responsive.sp(18),
                 fontWeight: FontWeight.bold,
               ),
@@ -369,7 +371,7 @@ void _showForgotPasswordBottomSheet(
             Text(
               "Enter your registered email address. We’ll send you a link to reset your password.",
               style: GoogleFonts.dmSans(
-                color: AppColor.white,
+                color: AppColor.textColor,
                 fontSize: Responsive.sp(10),
                 fontWeight: FontWeight.normal,
               ),
@@ -378,10 +380,10 @@ void _showForgotPasswordBottomSheet(
             SizedBox(
               height: Responsive.h(6),
               child: TextFormField(
-                style: TextStyle(color: AppColor.white),
+                style: TextStyle(color: AppColor.textColor),
                 controller: email,
-                cursorColor: AppColor.green,
-                cursorErrorColor: AppColor.green,
+                cursorColor: AppColor.textColor,
+                cursorErrorColor: AppColor.textColor,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -406,7 +408,7 @@ void _showForgotPasswordBottomSheet(
                   fillColor: AppColor.white.withValues(alpha: 0.08),
                   hintText: "Email Address",
                   hintStyle: GoogleFonts.dmSans(
-                    color: AppColor.white,
+                    color: AppColor.textColor,
                     fontWeight: FontWeight.normal,
                     fontSize: Responsive.sp(15),
                   ),

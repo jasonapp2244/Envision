@@ -15,7 +15,7 @@ class DoctorView extends StatelessWidget {
           child: Column(
             children: [
               // Search and filter row (similar to your HomeView)
-              buildSearchRow(),
+              // buildSearchRow(),
               const SizedBox(height: 20),
               Expanded(
                 child: GridView.builder(
@@ -26,7 +26,7 @@ class DoctorView extends StatelessWidget {
                     crossAxisCount: 2,
                     crossAxisSpacing: 12,
                     mainAxisSpacing: 12,
-                    childAspectRatio: 0.7,
+                    childAspectRatio: 0.65,
                   ),
                   itemBuilder: (context, index) {
                     return _buildDoctorCard();

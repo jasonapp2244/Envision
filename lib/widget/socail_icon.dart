@@ -17,7 +17,7 @@ class SocialButton extends StatelessWidget {
         width: Responsive.w(25), // 20% of screen width
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Responsive.w(5.5)),
-          color: AppColor.darkgreen,
+          color: AppColor.green,
         ),
         child: Padding(
           padding: EdgeInsets.all(Responsive.w(3)),
