@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider_tamplete/res/components/app_color.dart';
 import 'package:provider_tamplete/utils/routes/routes_name.dart';
-import 'package:provider_tamplete/view/home_view.dart';
 
 class ContentPreferenceScreen extends StatefulWidget {
   const ContentPreferenceScreen({super.key});

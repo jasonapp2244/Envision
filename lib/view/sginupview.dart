@@ -6,8 +6,6 @@ import 'package:provider_tamplete/res/components/app_color.dart';
 import 'package:provider_tamplete/res/components/auth_button.dart';
 import 'package:provider_tamplete/utils/routes/routes_name.dart';
 import 'package:provider_tamplete/utils/routes/utils.dart';
-import 'package:provider_tamplete/view/home_view.dart';
-import 'package:provider_tamplete/view/loginview.dart';
 import 'package:provider_tamplete/widget/radio_button.dart';
 import 'package:provider_tamplete/widget/socail_icon.dart';
 import 'package:responsive_adaptive_ui/responsive_adaptive_ui.dart';
@@ -43,7 +41,7 @@ class _SginupviewState extends State<Sginupview> {
   Widget build(BuildContext context) {
     // Initialize responsive class
 
-    final ValueChanged<bool> value;
+    // final ValueChanged<bool> value;
     Responsive.init(context);
     // final authViewmodel = Provider.of<AuthViewmodel>(context);
 
