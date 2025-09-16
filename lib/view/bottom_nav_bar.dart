@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider_tamplete/res/components/app_color.dart';
 import 'package:provider_tamplete/view/Setting_view.dart';
-import 'package:provider_tamplete/view/home_view.dart';
 import 'package:provider_tamplete/view/mian_tab.dart';
 
 class MainScreen extends StatefulWidget {

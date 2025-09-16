@@ -1,4 +1,4 @@
-import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider_tamplete/res/components/app_color.dart';
@@ -43,56 +43,56 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  Widget _buildSearchRow() {
-    return Row(
-      children: [
-        Expanded(
-          child: TextFormField(
-            decoration: InputDecoration(
-              prefixIcon: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: SvgPicture.asset(
-                  "assets/icons/search.svg",
-                  width: 10,
-                  height: 10,
-                ),
-              ),
-              hintText: "Search ...",
-              fillColor: AppColor.feildColor,
-              filled: true,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(18),
-                borderSide: BorderSide(color: AppColor.feildColor),
-              ),
-              errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(18),
-                borderSide: BorderSide(color: AppColor.feildColor),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(18),
-                borderSide: BorderSide(color: AppColor.feildColor),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(18),
-                borderSide: BorderSide(color: AppColor.feildColor),
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(width: 12),
-        Container(
-          decoration: BoxDecoration(
-            gradient: AppColor.multicolor,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Center(child: SvgPicture.asset("assets/icons/filter.svg")),
-          ),
-        ),
-      ],
-    );
-  }
+  // Widget _buildSearchRow() {
+  //   return Row(
+  //     children: [
+  //       Expanded(
+  //         child: TextFormField(
+  //           decoration: InputDecoration(
+  //             prefixIcon: Padding(
+  //               padding: const EdgeInsets.all(12.0),
+  //               child: SvgPicture.asset(
+  //                 "assets/icons/search.svg",
+  //                 width: 10,
+  //                 height: 10,
+  //               ),
+  //             ),
+  //             hintText: "Search ...",
+  //             fillColor: AppColor.feildColor,
+  //             filled: true,
+  //             border: OutlineInputBorder(
+  //               borderRadius: BorderRadius.circular(18),
+  //               borderSide: BorderSide(color: AppColor.feildColor),
+  //             ),
+  //             errorBorder: OutlineInputBorder(
+  //               borderRadius: BorderRadius.circular(18),
+  //               borderSide: BorderSide(color: AppColor.feildColor),
+  //             ),
+  //             focusedBorder: OutlineInputBorder(
+  //               borderRadius: BorderRadius.circular(18),
+  //               borderSide: BorderSide(color: AppColor.feildColor),
+  //             ),
+  //             enabledBorder: OutlineInputBorder(
+  //               borderRadius: BorderRadius.circular(18),
+  //               borderSide: BorderSide(color: AppColor.feildColor),
+  //             ),
+  //           ),
+  //         ),
+  //       ),
+  //       const SizedBox(width: 12),
+  //       Container(
+  //         decoration: BoxDecoration(
+  //           gradient: AppColor.multicolor,
+  //           borderRadius: BorderRadius.circular(12),
+  //         ),
+  //         child: Padding(
+  //           padding: const EdgeInsets.all(12.0),
+  //           child: Center(child: SvgPicture.asset("assets/icons/filter.svg")),
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
 
   Widget _buildSectionTitle(String title) {
     return Text(

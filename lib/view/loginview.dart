@@ -6,8 +6,6 @@ import 'package:provider_tamplete/res/components/app_color.dart';
 import 'package:provider_tamplete/res/components/auth_button.dart';
 import 'package:provider_tamplete/utils/routes/routes_name.dart';
 import 'package:provider_tamplete/utils/routes/utils.dart';
-import 'package:provider_tamplete/view/home_view.dart';
-import 'package:provider_tamplete/view/sginupview.dart';
 import 'package:provider_tamplete/widget/socail_icon.dart';
 import 'package:responsive_adaptive_ui/responsive_adaptive_ui.dart';
 
