@@ -63,7 +63,7 @@ class _MianTabState extends State<MianTab> with SingleTickerProviderStateMixin {
                   unselectedLabelColor: Colors.black,
                   tabs: const [
                     Tab(text: 'Videos'),
-                    Tab(text: 'Doctors'),
+                    Tab(text: 'Options'),
                   ],
                 ),
               ),

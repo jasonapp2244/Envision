@@ -58,35 +58,6 @@ class SettingView extends StatelessWidget {
                   ),
                 ),
               ),
-              // GestureDetector(
-              //   onTap: () =>
-              //       Navigator.pushNamed(context, RoutesName.setting),
-              //   child: Container(
-              //     decoration: BoxDecoration(
-              //       color: AppColor.feildColor,
-              //       borderRadius: BorderRadius.circular(12),
-              //     ),
-              //     width: double.infinity,
-              //     child: Padding(
-              //       padding: const EdgeInsets.all(12.0),
-              //       child: Row(
-              //         spacing: 5,
-              //         mainAxisAlignment: MainAxisAlignment.start,
-              //         children: [
-              //           SvgPicture.asset(AppImages.language),
-              //           Text(
-              //             "Change Language",
-              //             style: TextStyle(
-              //               fontSize: 16,
-              //               fontWeight: FontWeight.w600,
-              //               color: AppColor.textColor,
-              //             ),
-              //           ),
-              //         ],
-              //       ),
-              //     ),
-              //   ),
-              // ),
               GestureDetector(
                 onTap: () =>
                     Navigator.pushNamed(context, RoutesName.activitylogsView),
@@ -117,10 +88,41 @@ class SettingView extends StatelessWidget {
                 ),
               ),
               GestureDetector(
-                onTap: () => Navigator.pushNamed(
-                  context,
-                  RoutesName.lastviewedcontentview,
+                // onTap: () =>
+                //     Navigator.pushNamed(context, RoutesName.activitylogsView),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: AppColor.feildColor,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  width: double.infinity,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Row(
+                      spacing: 5,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.video_collection_outlined,
+                          color: Colors.grey,
+                        ),
+                        // SvgPicture.asset(AppImages.idea),
+                        Text(
+                          "Request a Video",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: AppColor.textColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
+              ),
+              GestureDetector(
+                onTap: () =>
+                    Navigator.pushNamed(context, RoutesName.activitylogsView),
                 child: Container(
                   decoration: BoxDecoration(
                     color: AppColor.feildColor,
@@ -136,6 +138,103 @@ class SettingView extends StatelessWidget {
                         SvgPicture.asset(AppImages.eye),
                         Text(
                           "Last viewed content",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: AppColor.textColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              GestureDetector(
+                // onTap: () =>
+                //     Navigator.pushNamed(context, RoutesName.activitylogsView),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: AppColor.feildColor,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  width: double.infinity,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Row(
+                      spacing: 5,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(Icons.support_agent_sharp, color: Colors.grey),
+
+                        // SvgPicture.asset(AppImages.idea),
+                        Text(
+                          "Tech Support",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: AppColor.textColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              GestureDetector(
+                // onTap: () => Navigator.pushNamed(
+                //   context,
+                //   RoutesName.lastviewedcontentview,
+                // ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: AppColor.feildColor,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  width: double.infinity,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Row(
+                      spacing: 5,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        // SvgPicture.asset(AppImages.eye),
+                        Icon(
+                          Icons.connect_without_contact_sharp,
+                          color: Colors.grey,
+                        ),
+
+                        Text(
+                          "Contact Us",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: AppColor.textColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              GestureDetector(
+                // onTap: () =>
+                //     Navigator.pushNamed(context, RoutesName.activitylogsView),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: AppColor.feildColor,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  width: double.infinity,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Row(
+                      spacing: 5,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        // SvgPicture.asset(AppImages.idea),
+                        Icon(Icons.feed_outlined, color: Colors.grey),
+                        Text(
+                          "Feedback",
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,

@@ -7,7 +7,7 @@ import 'package:provider_tamplete/view/home_view.dart';
 import 'package:provider_tamplete/view/last_viewed_content_view.dart';
 import 'package:provider_tamplete/view/loginview.dart';
 import 'package:flutter/material.dart';
-import 'package:provider_tamplete/view/mian_tab.dart';
+import 'package:provider_tamplete/view/mian_tab.dart' hide HomeView;
 import 'package:provider_tamplete/view/sginupview.dart';
 import 'package:provider_tamplete/view/splash_view.dart';
 import 'package:provider_tamplete/view/suggestion_view.dart';
@@ -16,8 +16,8 @@ class Routes {
   static Route<dynamic> generateRoutes(RouteSettings setting) {
     // setting.arguments;
     switch (setting.name) {
-      case RoutesName.home:
-        return MaterialPageRoute(builder: (BuildContext context) => HomeView());
+      // case RoutesName.home:
+      //   return MaterialPageRoute(builder: (BuildContext context) => HomeView());
       case RoutesName.login:
         return MaterialPageRoute(
           builder: (BuildContext context) => Loginview(),
@@ -31,7 +31,7 @@ class Routes {
           builder: (BuildContext context) => LastViewedContentView(),
         );
       case RoutesName.miantab:
-        return MaterialPageRoute(builder: (BuildContext context) => MianTab());
+        return MaterialPageRoute(builder: (BuildContext context) => HomeView());
       case RoutesName.signup:
         return MaterialPageRoute(
           builder: (BuildContext context) => Sginupview(),
