@@ -19,9 +19,11 @@ class Sginupview extends StatefulWidget {
 
 class _SginupviewState extends State<Sginupview> {
   final ValueNotifier<bool> _obsecurePassword = ValueNotifier<bool>(true);
+  TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  FocusNode nameFoucsNode = FocusNode();
   FocusNode emailFoucsNode = FocusNode();
   FocusNode phoneFoucsNode = FocusNode();
   FocusNode passwordFoucsNode = FocusNode();
@@ -89,8 +91,8 @@ class _SginupviewState extends State<Sginupview> {
                 SizedBox(height: Responsive.h(3)),
                 TextFormField(
                   style: TextStyle(color: AppColor.textColor),
-                  controller: emailController,
-                  focusNode: emailFoucsNode,
+                  controller: nameController,
+                  focusNode: nameFoucsNode,
                   cursorColor: AppColor.green,
                   cursorErrorColor: AppColor.green,
                   keyboardType: TextInputType.emailAddress,
@@ -111,9 +113,7 @@ class _SginupviewState extends State<Sginupview> {
                     ),
                     prefixIcon: Padding(
                       padding: EdgeInsets.all(Responsive.w(4)), // 2% of width
-                      child: SvgPicture.asset(
-                        "assets/icons/user.svg",
-                      ),
+                      child: SvgPicture.asset("assets/icons/user.svg"),
                     ),
                     filled: true,
                     fillColor: AppColor.white.withValues(alpha: 0.08),
@@ -127,8 +127,8 @@ class _SginupviewState extends State<Sginupview> {
                   onFieldSubmitted: (value) {
                     Utils.fieldFoucsChange(
                       context,
+                      nameFoucsNode,
                       emailFoucsNode,
-                      passwordFoucsNode,
                     );
                   },
                 ),
@@ -136,8 +136,8 @@ class _SginupviewState extends State<Sginupview> {
                 //
                 TextFormField(
                   style: TextStyle(color: AppColor.textColor),
-                  controller: phoneController,
-                  focusNode: phoneFoucsNode,
+                  controller: emailController,
+                  focusNode: emailFoucsNode,
                   cursorColor: AppColor.green,
                   cursorErrorColor: AppColor.green,
                   keyboardType: TextInputType.emailAddress,
@@ -325,7 +325,10 @@ class _SginupviewState extends State<Sginupview> {
                     } else if (passwordController.text.length < 8) {
                       Utils.tosatMassage("Please Enter 8 digits");
                     } else {
-                      Navigator.pushReplacementNamed(context, RoutesName.contentPreferenceScreen);
+                      Navigator.pushReplacementNamed(
+                        context,
+                        RoutesName.contentPreferenceScreen,
+                      );
                       // Navigate to
 
                       // Map<String, String> headr = {

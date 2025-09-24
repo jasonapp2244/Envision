@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider_tamplete/res/components/app_color.dart';
+import 'package:provider_tamplete/view/video_palyer.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -48,17 +49,20 @@ class _HomeViewState extends State<HomeView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Section title
-                _buildSectionTitle("Video Doctors"),
+                SvgPicture.asset("assets/icons/Group 2 (2).svg"),
                 const SizedBox(height: 16),
-
+                _buildSearchRow(),
+                // Section title
+                // _buildSectionTitle("Video Doctors"),
+                // const SizedBox(height: 16),
+                EnhancedVideoPlayer(),
                 // Playlist section
-                _buildPlaylistSection(),
-                const SizedBox(height: 24),
+                // _buildPlaylistSection(),
+                // const SizedBox(height: 24),
 
                 // Video player section
-                _buildVideoPlayerSection(),
-                const SizedBox(height: 24),
+                // _buildVideoPlayerSection(),
+                // const SizedBox(height: 24),
 
                 // Recommended section with reordering
                 _buildReorderableSection(),
@@ -92,11 +96,7 @@ class _HomeViewState extends State<HomeView> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
-                          Icons.play_arrow,
-                          size: 50,
-                          color: Colors.white,
-                        ),
+                        Icon(Icons.play_arrow, size: 50, color: Colors.white),
                         Text(
                           'Playing: ${_recommendedVideos[_currentPlayingIndex].title}',
                           style: TextStyle(color: Colors.white),
@@ -113,7 +113,7 @@ class _HomeViewState extends State<HomeView> {
                   ),
           ),
           const SizedBox(height: 12),
-          
+
           // Playback controls
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -157,17 +157,14 @@ class _HomeViewState extends State<HomeView> {
         const SizedBox(height: 8),
         Text(
           'Drag to reorder videos while playing',
-          style: TextStyle(
-            color: Colors.grey[600],
-            fontSize: 12,
-          ),
+          style: TextStyle(color: Colors.grey[600], fontSize: 12),
         ),
         const SizedBox(height: 16),
-        
+
         // Reorderable list
         Container(
           decoration: BoxDecoration(
-            color: AppColor.feildColor.withOpacity(0.3),
+            color: AppColor.feildColor.withValues(alpha: 0.3),
             borderRadius: BorderRadius.circular(15),
           ),
           child: ReorderableListView.builder(
@@ -181,13 +178,15 @@ class _HomeViewState extends State<HomeView> {
                 }
                 final VideoItem item = _recommendedVideos.removeAt(oldIndex);
                 _recommendedVideos.insert(newIndex, item);
-                
+
                 // Update current playing index if needed
                 if (_currentPlayingIndex == oldIndex) {
                   _currentPlayingIndex = newIndex;
-                } else if (_currentPlayingIndex > oldIndex && _currentPlayingIndex <= newIndex) {
+                } else if (_currentPlayingIndex > oldIndex &&
+                    _currentPlayingIndex <= newIndex) {
                   _currentPlayingIndex--;
-                } else if (_currentPlayingIndex < oldIndex && _currentPlayingIndex >= newIndex) {
+                } else if (_currentPlayingIndex < oldIndex &&
+                    _currentPlayingIndex >= newIndex) {
                   _currentPlayingIndex++;
                 }
               });
@@ -208,7 +207,7 @@ class _HomeViewState extends State<HomeView> {
       margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
       decoration: BoxDecoration(
         color: _currentPlayingIndex == index && _isVideoPlaying
-            ? AppColor.feildColor.withOpacity(0.1)
+            ? AppColor.feildColor.withValues(alpha: 0.1)
             : Colors.white,
         borderRadius: BorderRadius.circular(12),
         border: _currentPlayingIndex == index && _isVideoPlaying
@@ -248,10 +247,7 @@ class _HomeViewState extends State<HomeView> {
                 onPressed: () => _toggleVideoEnabled(video.id),
               ),
               // Drag handle
-              Icon(
-                Icons.drag_handle,
-                color: Colors.grey[400],
-              ),
+              Icon(Icons.drag_handle, color: Colors.grey[400]),
             ],
           ),
           onTap: () => _playVideoAtIndex(index),
@@ -266,10 +262,7 @@ class _HomeViewState extends State<HomeView> {
       height: 50,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        image: DecorationImage(
-          image: AssetImage(imagePath),
-          fit: BoxFit.cover,
-        ),
+        image: DecorationImage(image: AssetImage(imagePath), fit: BoxFit.cover),
       ),
     );
   }
@@ -277,12 +270,13 @@ class _HomeViewState extends State<HomeView> {
   Widget _buildToggleAllButton() {
     final allEnabled = _recommendedVideos.every((video) => video.isEnabled);
     final someEnabled = _recommendedVideos.any((video) => video.isEnabled);
-    
+
     return TextButton.icon(
       onPressed: _toggleAllVideos,
       icon: Icon(
         allEnabled ? Icons.toggle_on : Icons.toggle_off,
-        color: someEnabled ? AppColor.darkgreen : Colors.grey,size: 40,
+        color: someEnabled ? AppColor.darkgreen : Colors.grey,
+        size: 40,
       ),
       label: Text(
         allEnabled ? 'All On' : 'All Off',
@@ -443,6 +437,57 @@ class _HomeViewState extends State<HomeView> {
   }
 }
 
+Widget _buildSearchRow() {
+  return Row(
+    children: [
+      Expanded(
+        child: TextFormField(
+          decoration: InputDecoration(
+            prefixIcon: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: SvgPicture.asset(
+                width: 10,
+                height: 10,
+                "assets/icons/search.svg",
+              ),
+            ),
+            hintText: "Search ...",
+            fillColor: AppColor.feildColor,
+            filled: true,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(18),
+              borderSide: BorderSide(color: AppColor.feildColor),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(18),
+              borderSide: BorderSide(color: AppColor.feildColor),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(18),
+              borderSide: BorderSide(color: AppColor.feildColor),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(18),
+              borderSide: BorderSide(color: AppColor.feildColor),
+            ),
+          ),
+        ),
+      ),
+      const SizedBox(width: 5),
+      Container(
+        decoration: BoxDecoration(
+          gradient: AppColor.multicolor,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Center(child: SvgPicture.asset("assets/icons/filter.svg")),
+        ),
+      ),
+    ],
+  );
+}
+
 class VideoItem {
   final String id;
   final String imagePath;
@@ -458,24 +503,6 @@ class VideoItem {
     required this.isEnabled,
   });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import 'package:flutter/material.dart';
 // import 'package:flutter_svg/flutter_svg.dart';

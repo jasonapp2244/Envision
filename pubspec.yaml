@@ -45,6 +45,7 @@ dependencies:
   responsive_adaptive_ui: ^0.0.2
   flutter_launcher_icons: ^0.14.4
   google_nav_bar: ^5.0.7
+  video_player: ^2.10.0
 
 dev_dependencies:
   flutter_test:
@@ -81,6 +82,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
+    - assets/videos/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

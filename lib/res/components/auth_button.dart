@@ -1,6 +1,7 @@
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider_tamplete/res/components/app_color.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_adaptive_ui/responsive_adaptive_ui.dart';
 
 class AuthButton extends StatelessWidget {
   final String? buttontext;
@@ -18,7 +19,7 @@ class AuthButton extends StatelessWidget {
     return GestureDetector(
       onTap: onPress,
       child: Container(
-        width:double.infinity,
+        width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(18),
           gradient: AppColor.multicolor,
@@ -30,7 +31,11 @@ class AuthButton extends StatelessWidget {
                 ? CustomLoadingAnimation()
                 : Text(
                     buttontext.toString(),
-                    style: TextStyle(color: AppColor.white),
+                    style: TextStyle(
+                      fontSize: Responsive.sp(18),
+                      color: AppColor.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
           ),
         ),

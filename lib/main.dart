@@ -1,3 +1,4 @@
+import 'package:provider_tamplete/res/components/app_color.dart';
 import 'package:provider_tamplete/utils/routes/routes.dart';
 import 'package:provider_tamplete/utils/routes/routes_name.dart';
 import 'package:provider_tamplete/viewmodel/auth_viewmodel.dart';
@@ -20,7 +21,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: MianTab(),
+      // home: ProfileView(),
+       theme: ThemeData(
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: AppColor.darkgreen,
+          selectionColor: AppColor.darkgreen.withValues(alpha: 0.5),
+          selectionHandleColor: AppColor.darkgreen,
+        ),
+        useMaterial3: true,
+      ),
       initialRoute: RoutesName.splash,
       onGenerateRoute: Routes.generateRoutes,
     );

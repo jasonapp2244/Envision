@@ -81,8 +81,6 @@ class _LoginviewState extends State<Loginview> {
                   style: TextStyle(color: AppColor.textColor),
                   controller: emailController,
                   focusNode: emailFoucsNode,
-                  cursorColor: AppColor.green,
-                  cursorErrorColor: AppColor.green,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -132,8 +130,6 @@ class _LoginviewState extends State<Loginview> {
                       style: TextStyle(color: AppColor.textColor),
                       controller: passwordController,
                       focusNode: passwordFoucsNode,
-                      cursorColor: AppColor.darkgreen,
-                      cursorErrorColor: AppColor.darkgreen,
                       obscureText: _obsecurePassword.value,
                       obscuringCharacter: "*",
                       decoration: InputDecoration(
