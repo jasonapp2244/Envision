@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:provider_tamplete/firebase_options.dart';
 import 'package:provider_tamplete/res/components/app_color.dart';
 import 'package:provider_tamplete/utils/routes/routes.dart';
 import 'package:provider_tamplete/utils/routes/routes_name.dart';
@@ -5,10 +7,12 @@ import 'package:provider_tamplete/viewmodel/auth_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => AuthViewmodel())],
+      providers: [ChangeNotifierProvider(create: (_) => AuthViewModel())],
       child: MyApp(),
     ),
   );
@@ -22,7 +26,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // home: ProfileView(),
-       theme: ThemeData(
+      theme: ThemeData(
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: AppColor.darkgreen,
           selectionColor: AppColor.darkgreen.withValues(alpha: 0.5),

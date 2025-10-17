@@ -2,10 +2,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:provider_tamplete/res/components/app_color.dart';
 import 'package:provider_tamplete/res/components/auth_button.dart';
 import 'package:provider_tamplete/utils/routes/routes_name.dart';
 import 'package:provider_tamplete/utils/routes/utils.dart';
+import 'package:provider_tamplete/viewmodel/auth_viewmodel.dart';
 import 'package:provider_tamplete/widget/socail_icon.dart';
 import 'package:responsive_adaptive_ui/responsive_adaptive_ui.dart';
 
@@ -36,6 +38,8 @@ class _LoginviewState extends State<Loginview> {
 
   @override
   Widget build(BuildContext context) {
+    final authViewModel = Provider.of<AuthViewModel>(context);
+
     // Initialize responsive class
     Responsive.init(context);
     // final authViewmodel = Provider.of<AuthViewmodel>(context);
@@ -203,8 +207,7 @@ class _LoginviewState extends State<Loginview> {
                 SizedBox(height: Responsive.h(2.5)),
                 AuthButton(
                   buttontext: "Login",
-                  loading: false,
-                  //  authViewmodel.loading,
+                  loading: authViewModel.loading,
                   onPress: () {
                     if (emailController.text.isEmpty) {
                       Utils.flushBarErrorMassage(
@@ -218,20 +221,15 @@ class _LoginviewState extends State<Loginview> {
                       );
                     } else if (passwordController.text.length < 8) {
                       Utils.flushBarErrorMassage(
-                        "Please Enter 8 digits",
+                        "Password must be at least 8 characters",
                         context,
                       );
                     } else {
-                      Navigator.pushReplacementNamed(context, RoutesName.mainScreenHolder);
-                      // Navigator.pushReplacementNamed(context, RoutesName.role);
-                      // Map<String, String> headr = {
-                      //   "x-api-key": "reqres-free-v1",
-                      // };
-                      // Map data = {
-                      //   'email': emailController.text.toString(),
-                      //   'password': passwordController.text.toString(),
-                      // };
-                      // authViewmodel.loginApi(data, headr, context);
+                      authViewModel.loginApi(
+                        emailController.text.trim(),
+                        passwordController.text.trim(),
+                        context,
+                      );
                     }
                   },
                 ),
@@ -413,11 +411,15 @@ void _showForgotPasswordBottomSheet(
             AuthButton(
               buttontext: "Send Reset Link",
               onPress: () {
-                Navigator.pop(context);
-                Utils.tosatMassage("Reset link sent!");
+                final authViewModel = Provider.of<AuthViewModel>(
+                  context,
+                  listen: false,
+                );
+                authViewModel.resetPasswordApi(email.text.trim(), context);
               },
               loading: false,
             ),
+
             SizedBox(height: Responsive.h(2)),
           ],
         ),

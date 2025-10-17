@@ -1,33 +1,42 @@
-import 'package:provider_tamplete/data/network/baseapiservices.dart';
-import 'package:provider_tamplete/data/network/networkapiservices.dart';
-import 'package:provider_tamplete/res/components/app_url.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepository {
-  Baseapiservices apiServices = Networkapiservices();
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  Future<dynamic> loginApi(dynamic data, dynamic header) async {
+  Future<User?> login(String email, String password) async {
     try {
-      dynamic reponse = await apiServices.getPostApiResponse(
-        AppUrl.loginUrl,
-        data,
-        header,
+      final credential = await _firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
       );
-      return reponse;
-    } catch (e) {
-      rethrow;
+      return credential.user;
+    } on FirebaseAuthException catch (e) {
+      throw Exception(e.message);
     }
   }
 
-  Future<dynamic> sginUpApi(dynamic data, Map<String, String> header) async {
+  Future<User?> signup(String email, String password) async {
     try {
-      dynamic reponse = await apiServices.getPostApiResponse(
-        AppUrl.sginupUrl,
-        data,
-        header,
+      final credential = await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
       );
-      return reponse;
-    } catch (e) {
-      rethrow;
+      return credential.user;
+    } on FirebaseAuthException catch (e) {
+      throw Exception(e.message);
     }
+  }
+
+  Future<void> resetPassword(String email) async {
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      throw Exception(e.message);
+    }
+  }
+
+  Future<void> logout() async {
+    await _firebaseAuth.signOut();
+    // await _googleSignIn.signOut();
   }
 }

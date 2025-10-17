@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:provider_tamplete/res/components/app_color.dart';
-import 'package:provider_tamplete/view/loginview.dart';
+import 'package:provider_tamplete/viewmodel/auth_viewmodel.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final authViewModel = Provider.of<AuthViewModel>(context);
+
     return Scaffold(
       backgroundColor: AppColor.darkgreen,
       appBar: AppBar(
@@ -215,32 +218,37 @@ class ProfileView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () => Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (_) => Loginview()),
-                      ),
-                      child: Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: AppColor.red,
-                          borderRadius: BorderRadius.circular(22),
-                        ),
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "logout",
-                              style: GoogleFonts.dmSans(
-                                color: AppColor.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
+                    authViewModel.loading
+                        ? CircularProgressIndicator(color: AppColor.white)
+                        : GestureDetector(
+                            onTap: () async {
+                              await authViewModel.logout(context);
+                              // Navigator.pushReplacement(
+                              //   context,
+                              //   MaterialPageRoute(builder: (_) => Loginview()),
+                              // );
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: AppColor.red,
+                                borderRadius: BorderRadius.circular(22),
+                              ),
+                              child: Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "logout",
+                                    style: GoogleFonts.dmSans(
+                                      color: AppColor.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),

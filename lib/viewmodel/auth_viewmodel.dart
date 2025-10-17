@@ -1,68 +1,87 @@
-import 'package:provider_tamplete/repository/auth_repository.dart';
-import 'package:provider_tamplete/utils/routes/routes_name.dart';
-import 'package:provider_tamplete/utils/routes/utils.dart';
-import 'package:flutter/foundation.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider_tamplete/repository/auth_repository.dart';
+import 'package:provider_tamplete/utils/routes/utils.dart';
+import 'package:provider_tamplete/utils/routes/routes_name.dart';
 
-class AuthViewmodel extends ChangeNotifier {
-  final _myRepo = AuthRepository();
-  bool _isloading = false;
-  bool get loading => _isloading;
+class AuthViewModel with ChangeNotifier {
+  final _authRepo = AuthRepository();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  setloaoding(bool value) {
-    _isloading = value;
+  bool _loading = false;
+  bool get loading => _loading;
+
+  void setLoading(bool value) {
+    _loading = value;
     notifyListeners();
   }
 
   Future<void> loginApi(
-    dynamic data,
-    dynamic header,
+    String email,
+    String password,
     BuildContext context,
   ) async {
-    setloaoding(true);
-    _myRepo
-        .loginApi(data, header)
-        .then((value) {
-          setloaoding(false);
-          if (kDebugMode) {
-            print(value["token"].toString());
-            if (value["token"] == "QpwL5tke4Pnpja7X4") {
-              Navigator.pushNamed(context, RoutesName.home);
-            }
-          }
-        })
-        .onError((error, stackTrace) {
-          setloaoding(false);
-          if (kDebugMode) {
-            Utils.flushBarErrorMassage(error.toString(), context);
-            print(error.toString());
-          }
-        });
+    setLoading(true);
+    try {
+      final user = await _authRepo.login(email, password);
+      if (user != null) {
+        Utils.tosatMassage("Welcome back, ${user.email}");
+        Navigator.pushReplacementNamed(context, RoutesName.mainScreenHolder);
+      }
+    } catch (e) {
+      Utils.flushBarErrorMassage(e.toString(), context);
+    } finally {
+      setLoading(false);
+    }
   }
 
-  Future<void> sginUpApi(
-    dynamic data,
-    dynamic header,
+  Future<void> signupApi(
+    String email,
+    String password,
     BuildContext context,
   ) async {
-    setloaoding(true);
-    _myRepo
-        .loginApi(data, header)
-        .then((value) {
-          setloaoding(false);
-          if (kDebugMode) {
-            print(value["token"].toString());
-            if (value["token"] == "QpwL5tke4Pnpja7X4") {
-              Navigator.pushNamed(context, RoutesName.home);
-            }
-          }
-        })
-        .onError((error, stackTrace) {
-          setloaoding(false);
-          if (kDebugMode) {
-            Utils.flushBarErrorMassage(error.toString(), context);
-            print(error.toString());
-          }
-        });
+    setLoading(true);
+    try {
+      final user = await _authRepo.signup(email, password);
+      if (user != null) {
+        Utils.tosatMassage("Account created for ${user.email}");
+        Navigator.pushReplacementNamed(context, RoutesName.mainScreenHolder);
+      }
+    } catch (e) {
+      Utils.flushBarErrorMassage(e.toString(), context);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  Future<void> resetPasswordApi(String email, BuildContext context) async {
+    try {
+      await _authRepo.resetPassword(email);
+      Utils.tosatMassage("Reset link sent to $email");
+      Navigator.pop(context);
+    } catch (e) {
+      Utils.flushBarErrorMassage(e.toString(), context);
+    }
+  }
+
+  Future<void> logout(BuildContext context) async {
+    try {
+      await _authRepo.logout(); // this signs out from Firebase + Google
+      Utils.tosatMassage("Logged out successfully");
+      Navigator.pushReplacementNamed(context, RoutesName.login);
+    } catch (e) {
+      Utils.flushBarErrorMassage(e.toString(), context);
+    }
+  }
+
+  // 🔹 Check user login status on startup
+  void checkUserLoggedIn(BuildContext context) {
+    final user = _auth.currentUser;
+    if (user != null) {
+      // user already logged in
+      Navigator.pushReplacementNamed(context, RoutesName.mainScreenHolder);
+    } else {
+      Navigator.pushReplacementNamed(context, RoutesName.login);
+    }
   }
 }

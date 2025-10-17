@@ -5,11 +5,10 @@ import 'package:provider_tamplete/view/bottom_nav_bar.dart';
 import 'package:provider_tamplete/view/change_password_view.dart';
 import 'package:provider_tamplete/view/home_view.dart';
 import 'package:provider_tamplete/view/last_viewed_content_view.dart';
-import 'package:provider_tamplete/view/loginview.dart';
+import 'package:provider_tamplete/view/auth/loginview.dart';
 import 'package:flutter/material.dart';
-import 'package:provider_tamplete/view/mian_tab.dart' hide HomeView;
-import 'package:provider_tamplete/view/sginupview.dart';
-import 'package:provider_tamplete/view/splash_view.dart';
+import 'package:provider_tamplete/view/auth/sginupview.dart';
+import 'package:provider_tamplete/view/auth/splash_view.dart';
 import 'package:provider_tamplete/view/suggestion_view.dart';
 
 class Routes {
@@ -34,7 +33,7 @@ class Routes {
         return MaterialPageRoute(builder: (BuildContext context) => HomeView());
       case RoutesName.signup:
         return MaterialPageRoute(
-          builder: (BuildContext context) => Sginupview(),
+          builder: (BuildContext context) => SignupView(),
         );
       case RoutesName.mainScreenHolder:
         return MaterialPageRoute(

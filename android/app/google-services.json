@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "630518753461",
+    "project_id": "serenescene-29148",
+    "storage_bucket": "serenescene-29148.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630518753461:android:52babd71a27251491736fc",
+        "android_client_info": {
+          "package_name": "com.tes2t.envision"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630518753461-g67jvia0bj3hs952a214ug6r23hcu3m8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7sKqB_yLSVi6ucgwNqlmS-T6w49eRu1w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630518753461-g67jvia0bj3hs952a214ug6r23hcu3m8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

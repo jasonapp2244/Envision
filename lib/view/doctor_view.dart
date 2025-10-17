@@ -158,7 +158,7 @@ class DoctorView extends StatelessWidget {
           Text(
             'Cardiologist',
             style: TextStyle(
-              color: Colors.black.withOpacity(0.7),
+              color: Colors.black.withValues(alpha:  0.7),
               fontSize: 12,
               fontFamily: 'Inter',
               fontWeight: FontWeight.w400,
@@ -184,7 +184,7 @@ class DoctorView extends StatelessWidget {
                 child: Text(
                   'NY, 3.2 miles away',
                   style: TextStyle(
-                    color: Colors.black.withOpacity(0.7),
+                    color: Colors.black.withValues(alpha:  0.7),
                     fontSize: 11,
                     fontFamily: 'Inter',
                     fontWeight: FontWeight.w400,
